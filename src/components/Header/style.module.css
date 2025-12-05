@@ -1,0 +1,264 @@
+.container {
+  width: 100%;
+  height: 4.5rem;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  padding-right: 0.5rem;
+  z-index: 150;
+  border-bottom: 4px solid;
+  border-image: linear-gradient(to right, #55489c, #f27053) 1;
+}
+
+.line {
+  margin-top: 0rem;
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--color07);
+}
+
+.subcontainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.logo {
+  width: auto;
+  height: 3.5rem;
+  border: 1px solid white;
+  position: absolute;
+  top: 0.4rem;
+  left: 1rem;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.info {
+  margin-left: 5.5rem;
+  padding: 0.2rem;
+  padding-top: 0.8rem;
+}
+.store {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.open {
+  background-color: var(--color04);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.closed {
+  background-color: var(--color03);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.order {
+  font-size: 0.6rem;
+  color: var(--white);
+}
+
+.hamburguer {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: all 0.8s ease-out;
+  justify-content: center;
+}
+
+.line1 {
+  width: 100%;
+  height: 3px;
+  border-radius: 0.1rem;
+  background-color: var(--color05);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: all 0.3s ease-in;
+}
+
+.line2 {
+  width: 100%;
+  height: 3px;
+  border-radius: 0.1rem;
+  background-color: var(--color05);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: all 0.3s ease-in;
+}
+
+.line3 {
+  width: 100%;
+  height: 3px;
+  border-radius: 0.1rem;
+  background-color: var(--color05);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: all 0.3s ease-in;
+}
+
+.openR1 {
+  transform-origin: left;
+  transform: rotate(45deg);
+}
+
+.closedR1 {
+  transform-origin: center;
+  transform: rotate(0deg);
+}
+
+.openR2 {
+  opacity: 0;
+}
+
+.closedR2 {
+  opacity: 1;
+}
+
+.openR3 {
+  transform-origin: left;
+  transform: rotate(-45deg);
+}
+
+.closedR3 {
+  transform-origin: center;
+  transform: rotate(0deg);
+}
+
+.open {
+  transform: translateX(0%);
+}
+
+.closed {
+  transform: translateX(-100%);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 0.4rem;
+  min-height: calc(100vh - 4rem);
+  height: auto;
+  position: absolute;
+  top: 5.2rem;
+  padding: 1rem;
+  padding-top: 0;
+  width: 100%;
+  transition: all 0.4s ease-out;
+  background-color: var(--white);
+  gap: 0.2rem;
+  z-index: 99;
+}
+
+.menu li {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  padding-left: 1rem;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 0.125rem solid;
+  border-image: linear-gradient(to right, #55489c, #f27053) 1;
+  color: var(--color03);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  gap: 0.8rem;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--color01);
+}
+
+.icon {
+  color: var(--color01);
+}
+
+.identification {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .menu {
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    position: relative;
+    top: 100;
+    height: 50px;
+    min-height: 100%;
+    top: 0;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+    right: 0.5rem;
+  }
+  .open {
+    transform: translateX(0%);
+  }
+  .closed {
+    transform: translateX(0%);
+  }
+  .menu > li {
+    margin-top: 1rem;
+    color: black;
+    border: none;
+    width: auto;
+    padding-right: 1rem;
+    padding-left: 0;
+    border-right: 0.5px solid var(--cinza100);
+  }
+  .hamburguer {
+    display: none;
+  }
+
+  .identification {
+    font-family: var(--fontProject);
+    position: absolute;
+    width: 200px;
+    height: 3.5rem;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    border-radius: 0.3rem 0.3rem 0rem 0rem;
+    bottom: 0rem;
+    left: 13rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.3rem;
+    background: linear-gradient(var(--color05), var(--color01));
+    color: white;
+  }
+
+  .email {
+    font-size: 0.6rem;
+  }
+  .icon {
+    display: none;
+  }
+}
+
+.link {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

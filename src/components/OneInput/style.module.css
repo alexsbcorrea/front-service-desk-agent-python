@@ -1,0 +1,57 @@
+.container {
+  width: 100%;
+}
+
+.contLabel > label {
+  color: var(--cinza700);
+  font-weight: 700;
+}
+
+.contInput > input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.4rem;
+  border-radius: 0.2rem;
+  background-color: var(--input);
+  color: var(--black);
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid var(--cinza100);
+}
+
+.contInput > input:focus {
+  outline-color: var(--cinza400);
+}
+.contInput > input::placeholder {
+  color: var(--cinza200);
+}
+
+.contInput {
+  margin-top: 0.3rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.contIcon {
+  padding: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color01);
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .contLabel > label {
+    font-size: 0.8rem;
+  }
+}

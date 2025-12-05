@@ -1,0 +1,78 @@
+.container {
+  width: 100%;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.v2 {
+  font-family: var(--fontProject);
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--color04);
+  background-color: transparent;
+  border: 2px solid var(--color04);
+  font-weight: bold;
+}
+
+.v1 {
+  font-family: var(--fontProject);
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--white);
+  background: linear-gradient(var(--color01), var(--color02));
+  font-weight: bold;
+}
+
+.v3 {
+  font-family: var(--fontProject);
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--color04);
+  background-color: var(--white);
+  font-weight: bold;
+}
+
+.v4 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--white);
+  background-color: #3cb879;
+  font-weight: bold;
+}
+
+.v5 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--white);
+  background-color: #fd5765;
+  font-weight: bold;
+}
+
+.v6 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--white);
+  background-color: #f1c30f;
+  font-weight: bold;
+}
+
+.label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
