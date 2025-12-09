@@ -6,6 +6,7 @@ interface Conversation {
   content: string;
   id_threads: string;
   id_user: string;
+  name: string;
 }
 
 export function usePage() {
@@ -17,16 +18,13 @@ export function usePage() {
 
   async function GetConversation() {
     try {
-      const response = await api.get(
-        "/conversation/f0a4ee50571e4c6a8214190425c5c473",
-        {
-          headers: {
-            Authorization: `Bearer Aex`,
-          },
-        }
-      );
+      const response = await api.get("/threads/5", {
+        headers: {
+          Authorization: `Bearer Aex`,
+        },
+      });
 
-      setConversation(response.data.content);
+      setConversation(response.data.messages);
       console.log("VALIDAÇÃO");
       console.log(conversation);
     } catch (error) {

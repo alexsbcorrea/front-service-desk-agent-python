@@ -20,6 +20,8 @@ export default function Login() {
     setEmail,
     password,
     setPassword,
+    profile,
+    setProfile,
     Login,
   } = usePageLogin();
   return (
@@ -46,6 +48,12 @@ export default function Login() {
             placeholder=""
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          ></OneInput>
+          <OneInput
+            label="Perfil"
+            placeholder=""
+            value={profile}
+            onChange={(e) => setProfile(e.target.value)}
           ></OneInput>
           <Button
             label="Entrar"

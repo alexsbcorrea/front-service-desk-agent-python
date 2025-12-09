@@ -14,9 +14,10 @@ export default function Home() {
 
         {currentUser == "8e9de819c7134c9096f73620474df7c0" &&
           conversation?.map((item, index) => (
-            <p style={{ color: "red" }} key={index}>
-              {item.content}
-            </p>
+            <div key={index}>
+              <p style={{ color: "black" }}>{item.name}</p>
+              <p style={{ color: "red" }}>{item.content}</p>
+            </div>
           ))}
 
         <Button label="Buscar" onClick={GetConversation}></Button>

@@ -7,6 +7,7 @@ export function usePageLogin() {
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [profile, setProfile] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
@@ -26,7 +27,7 @@ export function usePageLogin() {
         id: id,
         name: name,
         email: email,
-        profile: "operador",
+        profile: profile,
         token: "123",
       };
       loginUser(data);
@@ -44,6 +45,8 @@ export function usePageLogin() {
     setEmail,
     password,
     setPassword,
+    profile,
+    setProfile,
     Login,
   };
 }

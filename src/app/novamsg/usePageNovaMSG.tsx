@@ -4,16 +4,20 @@ import { io } from "socket.io-client";
 import { URL } from "../../services/api";
 import { getCookie, deleteCookie } from "cookies-next";
 
+import { useAuth } from "@/contexts/UserContext";
+
 export function usePageNovaMSG() {
+  const { userInfo } = useAuth();
+
   const [content, setContent] = useState<string>("");
-  const [idUser, setIdUser] = useState<string>("");
+  const [idUser, setIdUser] = useState<string>(userInfo?.id || "");
   const [idThead, setIdThread] = useState<string>("");
 
   async function CreateMessage() {
     try {
       const response = await api.post(
         "/messages",
-        { content, id_user: idUser, id_threads: idThead },
+        { content, id_user: idUser, id_thread: idThead },
         {
           headers: {
             Authorization: `Bearer Aex`,
