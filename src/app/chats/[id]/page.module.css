@@ -1,0 +1,92 @@
+.page {
+  width: 100%;
+  min-height: calc(100dvh);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  height: auto;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+}
+
+.center {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  padding-bottom: 5rem;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid green;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.form {
+  width: 90%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+  justify-content: space-between;
+}
+
+.panel {
+  width: 90%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 2px solid red;
+}
+
+.conversation {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+  background-color: aquamarine;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.message {
+  border: 1px solid blue;
+}
+
+@media screen and (min-width: 1024px) {
+  .form {
+    width: 40%;
+  }
+  .panel {
+    width: 20%;
+  }
+}

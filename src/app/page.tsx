@@ -12,13 +12,12 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Conversa</h1>
 
-        {currentUser == "8e9de819c7134c9096f73620474df7c0" &&
-          conversation?.map((item, index) => (
-            <div key={index}>
-              <p style={{ color: "black" }}>{item.name}</p>
-              <p style={{ color: "red" }}>{item.content}</p>
-            </div>
-          ))}
+        {conversation?.map((item, index) => (
+          <div key={index}>
+            <p style={{ color: "black" }}>{item.name}</p>
+            <p style={{ color: "red" }}>{item.content}</p>
+          </div>
+        ))}
 
         <Button label="Buscar" onClick={GetConversation}></Button>
       </main>

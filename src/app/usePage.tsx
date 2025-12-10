@@ -18,7 +18,7 @@ export function usePage() {
 
   async function GetConversation() {
     try {
-      const response = await api.get("/threads/5", {
+      const response = await api.get("/threads/1", {
         headers: {
           Authorization: `Bearer Aex`,
         },
