@@ -106,7 +106,7 @@ export default function Header(props: HeaderProps) {
                 <div className={styles.icon}>
                   <LogIn size={20} />
                 </div>
-                <Link className={styles.link} href="/entrar">
+                <Link className={styles.link} href="/login">
                   Entrar
                 </Link>
               </li>

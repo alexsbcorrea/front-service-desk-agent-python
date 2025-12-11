@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { api } from "@/services/api";
+import { useRouter } from "next/navigation";
 
 import { useAuth } from "../../contexts/UserContext";
 
 export function usePageLogin() {
+  const router = useRouter();
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -14,24 +16,26 @@ export function usePageLogin() {
 
   async function Login() {
     try {
-      // const response = await api.post(
-      //   "/messages",
-      //   { content, id_user: idUser, id_threads: idThead },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer Aex`,
-      //     },
-      //   }
-      // );
+      const response = await api.post(
+        "/users/login",
+        { email },
+        {
+          headers: {
+            Authorization: `Bearer`,
+          },
+        }
+      );
+
       const data = {
-        id: id,
-        name: name,
-        email: email,
+        id: response.data.id,
+        name: response.data.name,
+        email: response.data.email,
         profile: profile,
-        token: "123",
+        token: response.data.token,
       };
       loginUser(data);
-      alert(`Bem vindo(a) ${name}`);
+      alert(`Bem vindo(a) ${response.data.name}`);
+      router.push("/fila");
     } catch (error) {
       console.log(error);
     }

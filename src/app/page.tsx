@@ -4,23 +4,20 @@ import styles from "./page.module.css";
 import { usePage } from "./usePage";
 import Button from "@/components/Button";
 
+import Header from "@/components/Header";
+
 export default function Home() {
   const { conversation, setConversation, GetConversation, currentUser } =
     usePage();
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <h1>Conversa</h1>
-
-        {conversation?.map((item, index) => (
-          <div key={index}>
-            <p style={{ color: "black" }}>{item.name}</p>
-            <p style={{ color: "red" }}>{item.content}</p>
-          </div>
-        ))}
-
-        <Button label="Buscar" onClick={GetConversation}></Button>
-      </main>
+      <header className={styles.header}>
+        <Header></Header>
+      </header>
+      <section className={styles.center}>
+        <div className={styles.form}></div>
+      </section>
+      <footer className={styles.footer}></footer>
     </div>
   );
 }

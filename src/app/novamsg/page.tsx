@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 
 import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
+import Header from "@/components/Header";
 
 import { usePageNovaMSG } from "./usePageNovaMSG";
 import { Pointer } from "lucide-react";
@@ -21,7 +22,9 @@ export default function NovaMSG() {
   } = usePageNovaMSG();
   return (
     <div className={styles.page}>
-      <header className={styles.header}>HEADER</header>
+      <header className={styles.header}>
+        <Header></Header>
+      </header>
       <section className={styles.center}>
         <div className={styles.form}>
           <OneInput
