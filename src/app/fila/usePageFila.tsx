@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "@/services/api";
-
+import { useRouter } from "next/navigation";
 import { useAuth } from "../../contexts/UserContext";
 
 type Fila = {
@@ -10,6 +10,7 @@ type Fila = {
 };
 
 export function usePageFila() {
+  const router = useRouter();
   const [fila, setFila] = useState<Fila[]>([]);
 
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
@@ -33,6 +34,7 @@ export function usePageFila() {
         id_preservice: id_preservice,
         id_user: id_user,
       });
+      router.push(`/chats/${response.data.id_thread}`);
     } catch (error) {
       console.log(error);
     }

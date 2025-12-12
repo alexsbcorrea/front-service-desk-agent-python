@@ -3,8 +3,10 @@ import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
 
 import { useAuth } from "../../contexts/UserContext";
+import { useFlashMessage } from "../../utils/useFlashMessage/useFlashMessage";
 
 export function usePageLogin() {
+  const { setFlashMessage } = useFlashMessage();
   const router = useRouter();
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -34,8 +36,8 @@ export function usePageLogin() {
         token: response.data.token,
       };
       loginUser(data);
-      alert(`Bem vindo(a) ${response.data.name}`);
-      router.push("/fila");
+      //setFlashMessage("success", `Bem vindo(a) ${name}`, 5000);
+      router.push("/solutions");
     } catch (error) {
       console.log(error);
     }

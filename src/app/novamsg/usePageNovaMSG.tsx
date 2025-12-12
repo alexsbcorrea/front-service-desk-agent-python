@@ -30,38 +30,38 @@ export function usePageNovaMSG() {
     }
   }
 
-  useEffect(() => {
-    const userName = getCookie("authUser");
-    const idUser = getCookie("idUser");
-    const newSocket = io(URL, {
-      reconnectionDelayMax: 10000,
-      auth: {
-        token: "123456",
-      },
-      query: {
-        room: `edit-article-`,
-        roomMain: `KBUsers`,
-        id: idUser ? idUser : "ID",
-        user: userName ? userName : "Usuário Desconhecido",
-      },
-    });
+  // useEffect(() => {
+  //   const userName = getCookie("authUser");
+  //   const idUser = getCookie("idUser");
+  //   const newSocket = io(URL, {
+  //     reconnectionDelayMax: 10000,
+  //     auth: {
+  //       token: "123456",
+  //     },
+  //     query: {
+  //       room: `edit-article-`,
+  //       roomMain: `KBUsers`,
+  //       id: idUser ? idUser : "ID",
+  //       user: userName ? userName : "Usuário Desconhecido",
+  //     },
+  //   });
 
-    // newSocket.on("roomList", (data) => {
-    //   setRoomList(data);
-    // });
+  //   // newSocket.on("roomList", (data) => {
+  //   //   setRoomList(data);
+  //   // });
 
-    // newSocket.on(`update-${id}`, () => {
-    //   refetchArticle();
-    // });
+  //   // newSocket.on(`update-${id}`, () => {
+  //   //   refetchArticle();
+  //   // });
 
-    // newSocket.on(`logoff-${idUser}`, () => {
-    //   Logout();
-    // });
+  //   // newSocket.on(`logoff-${idUser}`, () => {
+  //   //   Logout();
+  //   // });
 
-    // return () => {
-    //   newSocket.disconnect();
-    // };
-  }, []);
+  //   // return () => {
+  //   //   newSocket.disconnect();
+  //   // };
+  // }, []);
 
   return {
     content,

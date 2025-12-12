@@ -5,18 +5,23 @@ import styles from "./page.module.css";
 
 import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
+import Header from "@/components/Header";
+import IconCenter from "@/components/IconCenter";
 
 import { usePageNovoUsuario } from "./usePageNovoUsuario";
-import { Pointer } from "lucide-react";
+import { Pointer, User } from "lucide-react";
 
 export default function NovoUsuario() {
-  const { name, email, setName, setEmail, CreateUser } = usePageNovoUsuario();
+  const { name, email, setName, setEmail, CreateUser, Teste } =
+    usePageNovoUsuario();
   return (
     <div className={styles.page}>
-      <header className={styles.header}>HEADER</header>
+      <header className={styles.header}>
+        <Header></Header>
+      </header>
       <section className={styles.center}>
         <div className={styles.form}>
-          <h1>{name}</h1>
+          <IconCenter icon={<User size={100} color="#55489b" />} />
           <OneInput
             label="Nome"
             placeholder="João Silva"
@@ -30,8 +35,8 @@ export default function NovoUsuario() {
             onChange={(e) => setEmail(e.target.value)}
           ></OneInput>
           <Button
-            label="Enviar"
-            onClick={CreateUser}
+            label="Criar Conta"
+            onClick={Teste}
             style={{ cursor: "pointer" }}
           ></Button>
         </div>

@@ -110,6 +110,14 @@ export default function Header(props: HeaderProps) {
                   Entrar
                 </Link>
               </li>
+              <li>
+                <div className={styles.icon}>
+                  <LogIn size={20} />
+                </div>
+                <Link className={styles.link} href="/novousuario">
+                  Cadastre-se
+                </Link>
+              </li>
             </>
           )}
           {authenticated && (

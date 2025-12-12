@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--fontProject);
+  color: var(--color01);
+}
+
+.container > div {
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+
+.normal {
+  background-color: none;
+}
+
+.success {
+  background-color: #34b87c;
+}
+
+.error {
+  background-color: #ff3536;
+}
+
+.warning {
+  background-color: #f1c30f;
+}

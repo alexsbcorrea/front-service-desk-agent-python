@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { User } from "lucide-react";
 
 import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
@@ -9,6 +10,7 @@ import Header from "@/components/Header";
 
 import { usePageLogin } from "./usePageLogin";
 import { Pointer } from "lucide-react";
+import IconCenter from "@/components/IconCenter";
 
 export default function Login() {
   const {
@@ -31,6 +33,7 @@ export default function Login() {
       </header>
       <section className={styles.center}>
         <div className={styles.form}>
+          <IconCenter icon={<User size={100} color="#55489b" />} />
           <OneInput
             label="E-mail"
             placeholder=""

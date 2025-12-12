@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { api } from "@/services/api";
+import { io } from "socket.io-client";
+import { URL } from "../../../services/api";
+import { useParams, useRouter } from "next/navigation";
+import { getCookie, deleteCookie } from "cookies-next";
 
 import { useAuth } from "../../../contexts/UserContext";
 
@@ -21,6 +25,9 @@ interface Conversation {
 }
 
 export function usePageChats() {
+  const router = useRouter();
+  const { id } = useParams();
+
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
   const [threads, setThreads] = useState<Thread[]>([]);
   const [conversation, setConversation] = useState<Conversation[]>([]);
@@ -63,11 +70,8 @@ export function usePageChats() {
           Authorization: `Bearer Aex`,
         },
       });
-
+      router.push(`/chats/${id}`);
       setConversation(response.data.messages);
-      alert("sucesso");
-      console.log("VALIDAÇÃO");
-      console.log(conversation);
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +85,7 @@ export function usePageChats() {
       }
       const response = await api.post(
         "/messages",
-        { content, id_user: idUser, id_thread: idThead },
+        { content, id_user: userInfo?.id, id_thread: id },
         {
           headers: {
             Authorization: `Bearer Aex`,
@@ -97,6 +101,40 @@ export function usePageChats() {
 
   useEffect(() => {
     GetThreads();
+    if (id) {
+      GetConversation(String(id));
+    }
+  }, []);
+
+  useEffect(() => {
+    const userName = userInfo?.name; //getCookie("authUser");
+    const idUser = userInfo?.id; //getCookie("idUser");
+    const newSocket = io(URL, {
+      reconnectionDelayMax: 10000,
+      // auth: {
+      //   token: "123456",
+      //   room: `edit-article-`,
+      //   roomMain: `KBUsers`,
+      //   id: idUser ? idUser : "ID",
+      //   user: userName ? userName : "Usuário Desconhecido",
+      // },
+    });
+
+    // newSocket.on("roomList", (data) => {
+    //   setRoomList(data);
+    // });
+
+    // newSocket.on(`update-${id}`, () => {
+    //   refetchArticle();
+    // });
+
+    // newSocket.on(`logoff-${idUser}`, () => {
+    //   Logout();
+    // });
+
+    // return () => {
+    //   newSocket.disconnect();
+    // };
   }, []);
 
   return {
