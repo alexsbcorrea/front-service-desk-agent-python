@@ -9,11 +9,13 @@ export function usePageSolutions() {
 
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
 
+  const [initialMsg, setInitialMsg] = useState("");
+
   async function StartService() {
     try {
       const response = await api.post(
         "/preservices",
-        { id_user: userInfo?.id },
+        { id_user: userInfo?.id, initial_msg: initialMsg },
         {
           headers: {
             Authorization: `Bearer`,
@@ -26,6 +28,8 @@ export function usePageSolutions() {
     }
   }
   return {
+    initialMsg,
+    setInitialMsg,
     StartService,
   };
 }

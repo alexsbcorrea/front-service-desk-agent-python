@@ -24,9 +24,18 @@ export default function Login() {
               <p>ID: {item.id}</p>
               <p>ID Usuário: {item.id_user}</p>
               <p>Nome: {item.user}</p>
+              <p>Solicitação: {item.initial_msg}</p>
+              <p>Perfil: {item.profile}</p>
               <Button
                 label="Atender"
-                onClick={() => StartService(item.id, item.id_user)}
+                onClick={() =>
+                  StartService(
+                    item.id,
+                    item.id_user,
+                    item.profile,
+                    item.initial_msg
+                  )
+                }
               ></Button>
             </div>
           ))}

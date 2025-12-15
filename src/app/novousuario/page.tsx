@@ -12,8 +12,7 @@ import { usePageNovoUsuario } from "./usePageNovoUsuario";
 import { Pointer, User } from "lucide-react";
 
 export default function NovoUsuario() {
-  const { name, email, setName, setEmail, CreateUser, Teste } =
-    usePageNovoUsuario();
+  const { name, email, setName, setEmail, CreateUser } = usePageNovoUsuario();
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -36,7 +35,7 @@ export default function NovoUsuario() {
           ></OneInput>
           <Button
             label="Criar Conta"
-            onClick={Teste}
+            onClick={CreateUser}
             style={{ cursor: "pointer" }}
           ></Button>
         </div>

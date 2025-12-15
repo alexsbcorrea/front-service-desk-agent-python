@@ -7,6 +7,8 @@ type Fila = {
   id: string;
   id_user: string;
   user: string;
+  initial_msg: string;
+  profile: string;
 };
 
 export function usePageFila() {
@@ -28,11 +30,20 @@ export function usePageFila() {
     }
   }
 
-  async function StartService(id_preservice: string, id_user: string) {
+  async function StartService(
+    id_preservice: string,
+    id_user: string,
+    profile: string,
+    initial_msg: string
+  ) {
     try {
       const response = await api.post(`/threads`, {
         id_preservice: id_preservice,
         id_user: id_user,
+        id_operator: userInfo?.id,
+        content: initial_msg,
+        id_sender: id_user,
+        type_sender: profile,
       });
       router.push(`/chats/${response.data.id_thread}`);
     } catch (error) {

@@ -20,6 +20,8 @@ export default function Chats() {
     setContent,
     idUser,
     setIdUser,
+    profile,
+    setProfile,
     idThead,
     setIdThread,
     setConversation,

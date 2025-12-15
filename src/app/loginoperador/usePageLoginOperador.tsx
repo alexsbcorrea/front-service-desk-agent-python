@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../contexts/UserContext";
 import { useFlashMessage } from "../../utils/useFlashMessage/useFlashMessage";
 
-export function usePageLogin() {
+export function usePageLoginOperador() {
   const { setFlashMessage } = useFlashMessage();
   const router = useRouter();
   const [id, setId] = useState<string>("");
@@ -19,7 +19,7 @@ export function usePageLogin() {
   async function Login() {
     try {
       const response = await api.post(
-        "/users/login",
+        "/operators/login",
         { email },
         {
           headers: {
@@ -37,7 +37,7 @@ export function usePageLogin() {
       };
       loginUser(data);
       //setFlashMessage("success", `Bem vindo(a) ${name}`, 5000);
-      router.push("/solutions");
+      router.push("/fila");
     } catch (error) {
       console.log(error);
     }

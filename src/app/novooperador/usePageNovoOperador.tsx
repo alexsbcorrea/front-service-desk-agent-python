@@ -3,7 +3,7 @@ import { api } from "@/services/api";
 
 import { useFlashMessage } from "../../utils/useFlashMessage/useFlashMessage";
 
-export function usePageNovoUsuario() {
+export function usePageNovoOperador() {
   const { setFlashMessage } = useFlashMessage();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -11,7 +11,7 @@ export function usePageNovoUsuario() {
   async function CreateUser() {
     try {
       const response = await api.post(
-        "/users",
+        "/operators",
         { name, email },
         {
           headers: {

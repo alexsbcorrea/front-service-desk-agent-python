@@ -107,7 +107,15 @@ export default function Header(props: HeaderProps) {
                   <LogIn size={20} />
                 </div>
                 <Link className={styles.link} href="/login">
-                  Entrar
+                  Login Usuário
+                </Link>
+              </li>
+              <li>
+                <div className={styles.icon}>
+                  <LogIn size={20} />
+                </div>
+                <Link className={styles.link} href="/loginoperador">
+                  Login Operador
                 </Link>
               </li>
               <li>
@@ -115,7 +123,15 @@ export default function Header(props: HeaderProps) {
                   <LogIn size={20} />
                 </div>
                 <Link className={styles.link} href="/novousuario">
-                  Cadastre-se
+                  Novo Usuário
+                </Link>
+              </li>
+              <li>
+                <div className={styles.icon}>
+                  <LogIn size={20} />
+                </div>
+                <Link className={styles.link} href="/novooperador">
+                  Novo Operador
                 </Link>
               </li>
             </>

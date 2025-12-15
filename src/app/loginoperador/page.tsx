@@ -2,17 +2,30 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { User } from "lucide-react";
 
 import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
 import Header from "@/components/Header";
-import OneTextArea from "@/components/TextArea";
 
-import { usePageSolutions } from "./usePageSolutions";
+import { usePageLoginOperador } from "./usePageLoginOperador";
 import { Pointer } from "lucide-react";
+import IconCenter from "@/components/IconCenter";
 
 export default function Login() {
-  const { initialMsg, setInitialMsg, StartService } = usePageSolutions();
+  const {
+    id,
+    setId,
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    profile,
+    setProfile,
+    Login,
+  } = usePageLoginOperador();
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -20,21 +33,17 @@ export default function Login() {
       </header>
       <section className={styles.center}>
         <div className={styles.form}>
-          <h1>Solução Comuns</h1>
-          <h3>Solictação de Toner</h3>
-          <h3>Solictação de Etiquetas/Ribons</h3>
-          <h3>Erro de Integração</h3>
-          <h3>Overmind</h3>
-          <h3>Fin-X</h3>
-          <OneTextArea
-            value={initialMsg}
-            rows={5}
-            cols={150}
-            onChange={(e) => setInitialMsg(e.target.value)}
-          ></OneTextArea>
+          <IconCenter icon={<User size={100} color="#55489b" />} />
+          <OneInput
+            label="E-mail"
+            placeholder=""
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></OneInput>
+
           <Button
-            label="Entrar no Chat"
-            onClick={StartService}
+            label="Entrar"
+            onClick={Login}
             style={{ cursor: "pointer" }}
           ></Button>
         </div>

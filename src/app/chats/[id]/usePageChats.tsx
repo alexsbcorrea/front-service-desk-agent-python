@@ -35,6 +35,7 @@ export function usePageChats() {
   //SETUP DE MENSAGENS
   const [content, setContent] = useState<string>("");
   const [idUser, setIdUser] = useState<string>(userInfo?.id || "");
+  const [profile, setProfile] = useState<string>(userInfo?.profile || "");
   const [idThead, setIdThread] = useState<string>("");
   //SETUP DE MENSAGENS
 
@@ -85,7 +86,12 @@ export function usePageChats() {
       }
       const response = await api.post(
         "/messages",
-        { content, id_user: userInfo?.id, id_thread: id },
+        {
+          content,
+          id_sender: userInfo?.id,
+          id_thread: id,
+          type_sender: userInfo?.profile,
+        },
         {
           headers: {
             Authorization: `Bearer Aex`,
@@ -145,6 +151,8 @@ export function usePageChats() {
     setContent,
     idUser,
     setIdUser,
+    profile,
+    setProfile,
     idThead,
     setIdThread,
     setConversation,
