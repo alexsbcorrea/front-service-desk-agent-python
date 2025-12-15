@@ -38,7 +38,8 @@ export default function Chats() {
         <div className={styles.panel}>
           {threads.map((item, index) => (
             <div key={index}>
-              <p>{item.name}</p>
+              <p>{item.user}</p>
+              <p>{item.operator}</p>
               <Button onClick={() => GetConversation(item.id)}></Button>
             </div>
           ))}

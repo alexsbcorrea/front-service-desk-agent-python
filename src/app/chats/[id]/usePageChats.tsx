@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 import { URL } from "../../../services/api";
 import { useParams, useRouter } from "next/navigation";
 import { getCookie, deleteCookie } from "cookies-next";
+import { useQuery } from "@tanstack/react-query";
 
 import { useAuth } from "../../../contexts/UserContext";
 
@@ -11,9 +12,11 @@ type Thread = {
   id: string;
   id_preservice: string;
   id_user: string;
+  id_operator: string;
   created_at: string;
   updated_at: string;
-  name: string;
+  user: string;
+  operator: string;
 };
 
 interface Conversation {
@@ -39,18 +42,33 @@ export function usePageChats() {
   const [idThead, setIdThread] = useState<string>("");
   //SETUP DE MENSAGENS
 
+  //USE QUERY
   async function GetThreads() {
-    try {
-      const response = await api.get("/threads", {
-        headers: {
-          Authorization: `Bearer Aex`,
-        },
-      });
-      setThreads(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await api.get("/threads", {
+      headers: {
+        Authorization: `Bearer Aex`,
+      },
+    });
+    return response;
   }
+  //USE QUERY
+  const {
+    data: data1,
+    isLoading: isLoading1,
+    isError: isError1,
+    refetch: refetchData1,
+  } = useQuery({
+    queryFn: async () => await GetThreads(),
+    queryKey: ["minhas-conversas"], //Array according to Documentation
+    refetchOnWindowFocus: false,
+  });
+  //USE QUERY
+  useEffect(() => {
+    if (data1) {
+      setThreads(data1.data);
+    }
+  }, [data1]);
+  //USE QUERY
 
   async function StartService(id_preservice: string, id_user: string) {
     try {
@@ -106,7 +124,6 @@ export function usePageChats() {
   //SETUP DE MENSAGENS
 
   useEffect(() => {
-    GetThreads();
     if (id) {
       GetConversation(String(id));
     }
@@ -117,20 +134,21 @@ export function usePageChats() {
     const idUser = userInfo?.id; //getCookie("idUser");
     const newSocket = io(URL, {
       reconnectionDelayMax: 10000,
-      // auth: {
-      //   token: "123456",
-      //   room: `edit-article-`,
-      //   roomMain: `KBUsers`,
-      //   id: idUser ? idUser : "ID",
-      //   user: userName ? userName : "Usuário Desconhecido",
-      // },
+      auth: {
+        token: "123456",
+        room: `bp-chat-${id}`,
+        id: userInfo?.id,
+        user: userInfo?.name,
+        email: userInfo?.email,
+        profile: userInfo?.profile,
+      },
     });
 
-    // newSocket.on("roomList", (data) => {
-    //   setRoomList(data);
-    // });
+    newSocket.on(`message-${id}`, (data) => {
+      alert("Evento Recebido");
+    });
 
-    // newSocket.on(`update-${id}`, () => {
+    // newSocket.on(`message-${id}`, () => {
     //   refetchArticle();
     // });
 
@@ -138,9 +156,9 @@ export function usePageChats() {
     //   Logout();
     // });
 
-    // return () => {
-    //   newSocket.disconnect();
-    // };
+    return () => {
+      newSocket.disconnect();
+    };
   }, []);
 
   return {
