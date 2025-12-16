@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { api } from "@/services/api";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { URL } from "../../../services/api";
 import { useParams, useRouter } from "next/navigation";
 import { getCookie, deleteCookie } from "cookies-next";
@@ -22,7 +22,7 @@ type Thread = {
 interface Conversation {
   id: string;
   content: string;
-  id_threads: string;
+  id_thread: string;
   id_user: string;
   name: string;
   profile: string;
@@ -31,6 +31,10 @@ interface Conversation {
 export function usePageChats() {
   const router = useRouter();
   const { id } = useParams();
+
+  const socketRef = useRef<Socket | null>(null);
+
+  const [CONVERSATEMP, SETCONVERSATEMP] = useState<Conversation[]>([]);
 
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
   const [threads, setThreads] = useState<Thread[]>([]);
@@ -122,6 +126,21 @@ export function usePageChats() {
       console.log(error);
     }
   }
+  async function CreateMessageSocket() {
+    try {
+      socketRef.current?.emit("new_message", {
+        content: content,
+        id_sender: userInfo?.id,
+        name: userInfo?.name,
+        id_thread: id,
+        type_sender: userInfo?.profile,
+        room: `chat-${id}`,
+      });
+      setContent("");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   //SETUP DE MENSAGENS
 
   useEffect(() => {
@@ -133,7 +152,8 @@ export function usePageChats() {
   useEffect(() => {
     const userName = userInfo?.name; //getCookie("authUser");
     const idUser = userInfo?.id; //getCookie("idUser");
-    const newSocket = io(URL, {
+
+    socketRef.current = io(URL, {
       reconnectionDelayMax: 10000,
       query: {
         token: "123456",
@@ -145,9 +165,8 @@ export function usePageChats() {
       },
     });
 
-    newSocket.on(`new_message`, (data) => {
-      alert("Mensagem recebida.");
-      GetConversation(data.id_thread);
+    socketRef.current.on(`chat-${id}`, (data) => {
+      console.log(data);
     });
 
     // newSocket.on(`message-${id}`, () => {
@@ -159,7 +178,7 @@ export function usePageChats() {
     // });
 
     return () => {
-      newSocket.disconnect();
+      socketRef.current?.disconnect();
     };
   }, []);
 
@@ -179,5 +198,6 @@ export function usePageChats() {
     GetThreads,
     GetConversation,
     CreateMessage,
+    CreateMessageSocket,
   };
 }

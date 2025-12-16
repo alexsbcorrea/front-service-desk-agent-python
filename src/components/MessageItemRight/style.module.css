@@ -9,7 +9,7 @@
 }
 
 .contUser {
-  width: 70%;
+  width: 50%;
   height: auto;
   padding: 0.3rem;
   color: var(--color01);
@@ -20,7 +20,7 @@
 
 .contMessage {
   line-height: 140%;
-  width: 70%;
+  width: 50%;
   height: auto;
   padding: 1rem;
   border-radius: 0.5rem;

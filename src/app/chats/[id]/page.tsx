@@ -31,6 +31,7 @@ export default function Chats() {
     GetThreads,
     GetConversation,
     CreateMessage,
+    CreateMessageSocket,
   } = usePageChats();
   return (
     <div className={styles.page}>
@@ -71,7 +72,7 @@ export default function Chats() {
               rows={6}
               onChange={(e) => setContent(e.target.value)}
             ></OneTextArea>
-            <Button label="Enviar" onClick={CreateMessage}></Button>
+            <Button label="Enviar" onClick={CreateMessageSocket}></Button>
           </div>
         </div>
       </section>
