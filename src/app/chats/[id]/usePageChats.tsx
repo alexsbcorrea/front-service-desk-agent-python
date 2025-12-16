@@ -25,6 +25,7 @@ interface Conversation {
   id_threads: string;
   id_user: string;
   name: string;
+  profile: string;
 }
 
 export function usePageChats() {
@@ -116,7 +117,7 @@ export function usePageChats() {
           },
         }
       );
-      alert(response.data.message);
+      setContent("");
     } catch (error) {
       console.log(error);
     }
@@ -134,18 +135,19 @@ export function usePageChats() {
     const idUser = userInfo?.id; //getCookie("idUser");
     const newSocket = io(URL, {
       reconnectionDelayMax: 10000,
-      auth: {
+      query: {
         token: "123456",
         room: `bp-chat-${id}`,
         id: userInfo?.id,
-        user: userInfo?.name,
+        name: userInfo?.name,
         email: userInfo?.email,
         profile: userInfo?.profile,
       },
     });
 
-    newSocket.on(`message-${id}`, (data) => {
-      alert("Evento Recebido");
+    newSocket.on(`new_message`, (data) => {
+      alert("Mensagem recebida.");
+      GetConversation(data.id_thread);
     });
 
     // newSocket.on(`message-${id}`, () => {

@@ -19,7 +19,7 @@ const OneTextArea: React.FC<TextAreaProps & TextAreaNativeProps> = ({
         <label htmlFor={label}>{label}</label>
       </div>
       <div className={styles.contInput}>
-        <textarea {...rest} />
+        <textarea className={styles.textArea} {...rest} />
       </div>
     </div>
   );

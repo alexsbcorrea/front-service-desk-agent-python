@@ -50,6 +50,11 @@
   right: 0;
 }
 
+.textArea {
+  width: 100%;
+  font-family: var(--fontProject);
+}
+
 @media screen and (max-width: 800px) {
   .contLabel > label {
     font-size: 0.8rem;

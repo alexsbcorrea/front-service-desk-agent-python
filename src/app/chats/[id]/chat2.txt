@@ -47,8 +47,8 @@ export default function Chats() {
             ></Conversation>
           ))}
         </div>
-        <div className={styles.conversation}>
-          <div className={styles.chat}>
+        <div className={styles.form}>
+          <div className={styles.conversation}>
             {conversation?.map((item, index) =>
               item.profile === "user" ? (
                 <MessageItemRight
@@ -68,7 +68,8 @@ export default function Chats() {
           <div className={styles.message}>
             <OneTextArea
               value={content}
-              rows={6}
+              rows={5}
+              cols={150}
               onChange={(e) => setContent(e.target.value)}
             ></OneTextArea>
             <Button label="Enviar" onClick={CreateMessage}></Button>
