@@ -26,6 +26,8 @@ interface Conversation {
   id_user: string;
   name: string;
   profile: string;
+  created_at: string;
+  updated_at: string
 }
 
 export function usePageChats() {
@@ -33,8 +35,6 @@ export function usePageChats() {
   const { id } = useParams();
 
   const socketRef = useRef<Socket | null>(null);
-
-  const [CONVERSATEMP, SETCONVERSATEMP] = useState<Conversation[]>([]);
 
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
   const [threads, setThreads] = useState<Thread[]>([]);
@@ -165,8 +165,10 @@ export function usePageChats() {
       },
     });
 
-    socketRef.current.on(`chat-${id}`, (data) => {
+    socketRef.current.on(`new_message`, (data) => {
+      //alert("Teste de evento")
       console.log(data);
+      setConversation((chatAnterior) => [...chatAnterior, data])
     });
 
     // newSocket.on(`message-${id}`, () => {
