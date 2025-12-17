@@ -23,9 +23,7 @@
 
 .center {
   width: 100%;
-  height: auto;
   min-height: 100%;
-  overflow-y: scroll;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -44,23 +42,48 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid green;
 }
 
 .link {
   text-decoration: none;
 }
 
-.form {
-  width: 90%;
-  min-height: 100%;
+.panel {
+  width: 20%;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: var(--color03);
+  padding: 0.5rem;
+}
+
+.conversation {
+  width: 80%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+}
+
+.chat {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.message {
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (min-width: 1024px) {
-  .form {
-    width: 70%;
+  /* .form {
+    width: 40%;
+    min-height: 100%;
+    overflow-y: scroll;
   }
+  .panel {
+    width: 20%;
+    min-height: 100%;
+    overflow-y: scroll;
+  } */
 }

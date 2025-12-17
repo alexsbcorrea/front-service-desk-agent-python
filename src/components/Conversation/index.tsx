@@ -2,15 +2,18 @@
 import React from "react";
 import styles from "./style.module.css";
 import { CircleUser } from "lucide-react";
+import Link from "next/link";
 
 export type ConversationProps = {
   user?: string;
-  onClick: () => Promise<void>;
+  link?: string;
+  onClick?: () => Promise<void>;
 };
 
-const Conversation: React.FC<ConversationProps> = ({ user, onClick }) => {
+const Conversation: React.FC<ConversationProps> = ({ user, link, onClick }) => {
   return (
-    <div
+    <Link
+      href={link ? link : "#"}
       className={styles.container}
       onClick={onClick}
       style={{ cursor: "pointer" }}
@@ -21,7 +24,7 @@ const Conversation: React.FC<ConversationProps> = ({ user, onClick }) => {
       <div className={styles.contInput}>
         <p>{user}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

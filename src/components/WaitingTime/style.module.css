@@ -11,9 +11,6 @@
   background-color: white;
   border-radius: 0.5rem;
   margin-top: 0.4rem;
-  text-decoration: none;
-  font-weight: bold;
-  color: var(--color01);
 }
 
 .contLabel {
@@ -22,4 +19,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.contInput {
+  width: 100%;
 }

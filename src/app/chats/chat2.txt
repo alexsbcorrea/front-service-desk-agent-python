@@ -31,7 +31,6 @@ export default function Chats() {
     GetThreads,
     GetConversation,
     CreateMessage,
-    CreateMessageSocket,
   } = usePageChats();
   return (
     <div className={styles.page}>
@@ -40,17 +39,16 @@ export default function Chats() {
       </header>
       <section className={styles.center}>
         <div className={styles.panel}>
-          {" "}
           {threads.map((item, index) => (
             <Conversation
               key={index}
               user={item.user}
-              link={`/chats/${item.id}`}
+              onClick={() => GetConversation(item.id)}
             ></Conversation>
           ))}
         </div>
-        <div className={styles.conversation}>
-          <div className={styles.chat}>
+        <div className={styles.form}>
+          <div className={styles.conversation}>
             {conversation?.map((item, index) =>
               item.profile === "user" ? (
                 <MessageItemRight
@@ -70,10 +68,11 @@ export default function Chats() {
           <div className={styles.message}>
             <OneTextArea
               value={content}
-              rows={6}
+              rows={5}
+              cols={150}
               onChange={(e) => setContent(e.target.value)}
             ></OneTextArea>
-            <Button label="Enviar" onClick={CreateMessageSocket}></Button>
+            <Button label="Enviar" onClick={CreateMessage}></Button>
           </div>
         </div>
       </section>

@@ -9,9 +9,10 @@ import Header from "@/components/Header";
 
 import { usePageFila } from "./usePageFila";
 import { Pointer } from "lucide-react";
+import WaitingTime from "@/components/WaitingTime";
 
 export default function Login() {
-  const { fila, StartService } = usePageFila();
+  const { fila, StartService, currentTime } = usePageFila();
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -20,24 +21,21 @@ export default function Login() {
       <section className={styles.center}>
         <div className={styles.form}>
           {fila?.map((item, index) => (
-            <div key={index}>
-              <p>ID: {item.id}</p>
-              <p>ID Usuário: {item.id_user}</p>
-              <p>Nome: {item.user}</p>
-              <p>Solicitação: {item.initial_msg}</p>
-              <p>Perfil: {item.profile}</p>
-              <Button
-                label="Atender"
-                onClick={() =>
-                  StartService(
-                    item.id,
-                    item.id_user,
-                    item.profile,
-                    item.initial_msg
-                  )
-                }
-              ></Button>
-            </div>
+            <WaitingTime
+              key={index}
+              title={item.user}
+              initial_msg={item.initial_msg}
+              startDate={item.created_at}
+              endDate={currentTime}
+              onClick={() =>
+                StartService(
+                  item.id,
+                  item.id_user,
+                  item.profile,
+                  item.initial_msg
+                )
+              }
+            ></WaitingTime>
           ))}
         </div>
       </section>

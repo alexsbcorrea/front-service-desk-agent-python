@@ -9,9 +9,21 @@ type Fila = {
   user: string;
   initial_msg: string;
   profile: string;
+  created_at: string;
+  updated_at: string;
 };
 
 export function usePageFila() {
+  //SETUP TIME UPDATE
+  const [currentTime, setCurrentTime] = useState(new Date().toUTCString());
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date().toUTCString());
+    }, 60000); // Atualiza a cada 60000 milissegundos (1 minuto)
+
+    return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
+  }, []);
+  //SETUP TIME UPDATE
   const router = useRouter();
   const [fila, setFila] = useState<Fila[]>([]);
 
@@ -60,5 +72,6 @@ export function usePageFila() {
     setFila,
     GetQueue,
     StartService,
+    currentTime,
   };
 }

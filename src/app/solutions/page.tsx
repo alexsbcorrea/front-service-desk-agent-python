@@ -7,6 +7,7 @@ import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
 import Header from "@/components/Header";
 import OneTextArea from "@/components/TextArea";
+import CardSolution from "@/components/CardSolution";
 
 import { usePageSolutions } from "./usePageSolutions";
 import { Pointer } from "lucide-react";
@@ -20,12 +21,10 @@ export default function Login() {
       </header>
       <section className={styles.center}>
         <div className={styles.form}>
-          <h1>Solução Comuns</h1>
-          <h3>Solictação de Toner</h3>
-          <h3>Solictação de Etiquetas/Ribons</h3>
-          <h3>Erro de Integração</h3>
-          <h3>Overmind</h3>
-          <h3>Fin-X</h3>
+          <CardSolution title="Solictação de Toner"></CardSolution>
+          <CardSolution title="Solictação de Etiquetas/Ribons"></CardSolution>
+          <CardSolution title="Overmind"></CardSolution>
+          <CardSolution title="Fin-X"></CardSolution>
           <OneTextArea
             value={initialMsg}
             rows={5}

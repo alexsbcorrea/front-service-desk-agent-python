@@ -75,33 +75,20 @@ export function usePageChats() {
   }, [data1]);
   //USE QUERY
 
-  //USE QUERY
-  async function GetConversation() {
-    const response = await api.get(`/threads/${id}`, {
-      headers: {
-        Authorization: `Bearer Aex`,
-      },
-    });
-    return response;
-  }
-  //USE QUERY
-  const {
-    data: data2,
-    isLoading: isLoading2,
-    isError: isError2,
-    refetch: refetchData2,
-  } = useQuery({
-    queryFn: async () => await GetConversation(),
-    queryKey: [`chat-${id}`], //Array according to Documentation
-    refetchOnWindowFocus: false,
-  });
-  //USE QUERY
-  useEffect(() => {
-    if (data2) {
-      setConversation(data2.data.messages);
+  async function GetConversation(id: string) {
+    setIdThread(id);
+    try {
+      const response = await api.get(`/threads/${id}`, {
+        headers: {
+          Authorization: `Bearer Aex`,
+        },
+      });
+      router.push(`/chats/${id}`);
+      setConversation(response.data.messages);
+    } catch (error) {
+      console.log(error);
     }
-  }, [data2]);
-  //USE QUERY
+  }
 
   async function CreateMessage() {
     try {
@@ -149,6 +136,8 @@ export function usePageChats() {
   }
   //SETUP DE MENSAGENS
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     const userName = userInfo?.name; //getCookie("authUser");
     const idUser = userInfo?.id; //getCookie("idUser");
@@ -166,6 +155,8 @@ export function usePageChats() {
     });
 
     socketRef.current.on(`new_message`, (data) => {
+      //alert("Teste de evento")
+      console.log(data);
       setConversation((chatAnterior) => [...chatAnterior, data]);
     });
 

@@ -40,12 +40,11 @@ export default function Chats() {
       </header>
       <section className={styles.center}>
         <div className={styles.panel}>
-          {" "}
           {threads.map((item, index) => (
             <Conversation
               key={index}
               user={item.user}
-              link={`/chats/${item.id}`}
+              onClick={() => GetConversation(item.id)}
             ></Conversation>
           ))}
         </div>
