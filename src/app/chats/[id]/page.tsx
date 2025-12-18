@@ -8,6 +8,7 @@ import Button from "@/components/Button";
 import Header from "@/components/Header";
 import OneTextArea from "@/components/TextArea";
 import Conversation from "@/components/Conversation";
+import ButtonRound from "@/components/ButtonRound";
 
 import { usePageChats } from "./usePageChats";
 import { Pointer } from "lucide-react";
@@ -73,7 +74,13 @@ export default function Chats() {
               rows={6}
               onChange={(e) => setContent(e.target.value)}
             ></OneTextArea>
-            <Button label="Enviar" onClick={CreateMessageSocket}></Button>
+            <div className={styles.comands}>
+              <div className={styles.buttons}></div>
+              <ButtonRound
+                label="Enviar"
+                onClick={CreateMessageSocket}
+              ></ButtonRound>
+            </div>
           </div>
         </div>
       </section>

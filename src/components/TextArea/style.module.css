@@ -32,9 +32,11 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .contIcon {
@@ -53,6 +55,8 @@
 .textArea {
   width: 100%;
   font-family: var(--fontProject);
+  border: 1px solid var(--cinza100);
+  border-radius: 0.5rem;
 }
 
 @media screen and (max-width: 800px) {

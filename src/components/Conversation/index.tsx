@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./style.module.css";
-import { CircleUser } from "lucide-react";
+import { CircleUser, UserRound } from "lucide-react";
 import Link from "next/link";
 
 export type ConversationProps = {
@@ -19,7 +19,9 @@ const Conversation: React.FC<ConversationProps> = ({ user, link, onClick }) => {
       style={{ cursor: "pointer" }}
     >
       <div className={styles.contLabel}>
-        <CircleUser size={40} color="#55489b" />
+        <div className={styles.icon}>
+          <UserRound size={25} color="#FFFFFF" />
+        </div>
       </div>
       <div className={styles.contInput}>
         <p>{user}</p>

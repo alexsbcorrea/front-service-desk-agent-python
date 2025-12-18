@@ -52,7 +52,7 @@
   width: 20%;
   height: 100%;
   overflow-y: scroll;
-  background-color: var(--color03);
+  background-color: var(--color07);
   padding: 0.5rem;
 }
 
@@ -73,6 +73,26 @@
 .message {
   width: 100%;
   height: auto;
+}
+
+.comands {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  width: 50%;
+  height: 100%;
+  border: 1px solid var(--cinza200);
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: centerss;
 }
 
 @media screen and (min-width: 1024px) {
