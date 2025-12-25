@@ -5,6 +5,7 @@ import { URL } from "../../../services/api";
 import { useParams, useRouter } from "next/navigation";
 import { getCookie, deleteCookie } from "cookies-next";
 import { useQuery } from "@tanstack/react-query";
+import { useToken } from "../../../services/useToken";
 
 import { useAuth } from "../../../contexts/UserContext";
 
@@ -31,6 +32,7 @@ interface Conversation {
 }
 
 export function usePageChats() {
+  const { extractToken } = useToken();
   const router = useRouter();
   const { id } = useParams();
 
@@ -51,7 +53,7 @@ export function usePageChats() {
   async function GetThreads() {
     const response = await api.get("/threads", {
       headers: {
-        Authorization: `Bearer Aex`,
+        Authorization: `Bearer ${extractToken()}`,
       },
     });
     return response;
@@ -79,7 +81,7 @@ export function usePageChats() {
   async function GetConversation() {
     const response = await api.get(`/threads/${id}`, {
       headers: {
-        Authorization: `Bearer Aex`,
+        Authorization: `Bearer ${extractToken()}`,
       },
     });
     return response;
@@ -119,7 +121,7 @@ export function usePageChats() {
         },
         {
           headers: {
-            Authorization: `Bearer Aex`,
+            Authorization: `Bearer ${extractToken()}`,
           },
         }
       );
@@ -140,7 +142,7 @@ export function usePageChats() {
         name: userInfo?.name,
         id_thread: id,
         type_sender: userInfo?.profile,
-        room: `chat-${id}`,
+        room: `bp-chat-${id}`,
       });
       setContent("");
     } catch (error) {
@@ -150,18 +152,21 @@ export function usePageChats() {
   //SETUP DE MENSAGENS
 
   useEffect(() => {
-    const userName = userInfo?.name; //getCookie("authUser");
-    const idUser = userInfo?.id; //getCookie("idUser");
+    const token = getCookie("chat-bp-token");
+    const id = getCookie("chat-bp-id");
+    const name = getCookie("chat-bp-name");
+    const email = getCookie("chat-bp-email");
+    const profile = getCookie("chat-bp-profile");
 
     socketRef.current = io(URL, {
       reconnectionDelayMax: 10000,
       query: {
-        token: "123456",
+        token: token,
         room: `bp-chat-${id}`,
-        id: userInfo?.id,
-        name: userInfo?.name,
-        email: userInfo?.email,
-        profile: userInfo?.profile,
+        id: id,
+        name: name,
+        email: email,
+        profile: profile,
       },
     });
 

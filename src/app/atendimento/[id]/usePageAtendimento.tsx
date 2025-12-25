@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { api } from "@/services/api";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../../contexts/UserContext";
+import { useParams, useRouter } from "next/navigation";
+import { useAuth } from "../../../contexts/UserContext";
 import { Socket, io } from "socket.io-client";
-import { URL } from "../../services/api";
+import { URL } from "../../../services/api";
 import { getCookie } from "cookies-next";
-import { useToken } from "../../services/useToken";
+import { useToken } from "../../../services/useToken";
 
 type Fila = {
   id: string;
@@ -17,12 +17,21 @@ type Fila = {
   updated_at: string;
 };
 
-export function usePageFila() {
+type PreService = {
+  id: string;
+  active: boolean;
+  initial_msg: string;
+  id_user: string;
+  user: string;
+};
+
+export function usePageAtendimento() {
+  const { id } = useParams();
   const { extractToken } = useToken();
   const socketRef = useRef<Socket | null>(null);
   useEffect(() => {
     const token = getCookie("chat-bp-token");
-    const id = getCookie("chat-bp-id");
+    const id_user = getCookie("chat-bp-id");
     const name = getCookie("chat-bp-name");
     const email = getCookie("chat-bp-email");
     const profile = getCookie("chat-bp-profile");
@@ -31,16 +40,20 @@ export function usePageFila() {
       reconnectionDelayMax: 10000,
       query: {
         token: token,
-        room: `bp-chat-fila`,
-        id: id,
+        room: `bp-chat-atendimento-${id}`,
+        id: id_user,
         name: name,
         email: email,
         profile: profile,
       },
     });
 
-    socketRef.current.on(`new_preservice`, (data) => {
-      GetQueue();
+    socketRef.current.on(`start_thread`, (data) => {
+      router.push(`/chats/${data.id_thread}`);
+    });
+
+    socketRef.current.on(`cancel_preservice`, (data) => {
+      router.push(`/solutions`);
     });
 
     return () => {
@@ -59,63 +72,44 @@ export function usePageFila() {
   //SETUP TIME UPDATE
   const router = useRouter();
   const [fila, setFila] = useState<Fila[]>([]);
+  const [preservice, setPreservice] = useState<PreService>();
 
   const { userInfo, authenticated, loginUser, logoutUser } = useAuth();
 
-  async function GetQueue() {
+  async function GetPreService() {
     try {
-      const response = await api.get("/preservices", {
+      const response = await api.get(`/preservices/${id}`, {
         headers: {
           Authorization: `Bearer ${extractToken()}`,
         },
       });
-      setFila(response.data);
+      setPreservice(response.data);
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function StartService(
-    id_preservice: string,
-    id_user: string,
-    profile: string,
-    initial_msg: string
-  ) {
+  async function CancelService() {
     try {
-      const response = await api.post(`/threads`, {
-        id_preservice: id_preservice,
-        id_user: id_user,
-        id_operator: userInfo?.id,
-        content: initial_msg,
-        id_sender: id_user,
-        type_sender: profile,
-      });
-      router.push(`/chats/${response.data.id_thread}`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function CancelService(id_preservice: string) {
-    try {
-      const response = await api.put(`/preservices/cancel/${id_preservice}`, {
+      const response = await api.put(`/preservices/cancel/${id}`, {
         active: false,
       });
+      router.push(`/solutions`);
     } catch (error) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    GetQueue();
+    GetPreService();
   }, []);
 
   return {
     fila,
     setFila,
-    GetQueue,
-    StartService,
-    currentTime,
+    GetPreService,
     CancelService,
+    currentTime,
+    preservice,
   };
 }

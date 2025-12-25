@@ -8,7 +8,10 @@ export type CardSolutionProps = {
   initial_msg?: string;
   startDate?: string;
   endDate?: string;
-  onClick?: () => Promise<void>;
+  onClick1?: () => Promise<void>;
+  onClick2?: () => Promise<void>;
+  label1?: string;
+  label2?: string;
 };
 
 import { useCalcDate } from "../../utils/useCalcDate";
@@ -19,7 +22,10 @@ const WaitingTime: React.FC<CardSolutionProps> = ({
   initial_msg,
   startDate,
   endDate,
-  onClick,
+  onClick1,
+  onClick2,
+  label1,
+  label2,
 }) => {
   const {
     differenceInYears,
@@ -42,11 +48,7 @@ const WaitingTime: React.FC<CardSolutionProps> = ({
   });
 
   return (
-    <div
-      className={styles.container}
-      onClick={onClick}
-      style={{ cursor: "pointer" }}
-    >
+    <div className={styles.container} style={{ cursor: "pointer" }}>
       <div className={styles.contLabel}>
         <MessageCircleMore size={40} color="#55489b" />
       </div>
@@ -63,7 +65,8 @@ const WaitingTime: React.FC<CardSolutionProps> = ({
       </div>
       <div className={styles.contInput}>
         <div className={styles.button}>
-          <Button label="Atender" onClick={onClick}></Button>
+          <Button label={label1} onClick={onClick1}></Button>
+          <Button label={label2} onClick={onClick2}></Button>
         </div>
       </div>
     </div>

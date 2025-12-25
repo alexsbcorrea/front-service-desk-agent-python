@@ -7,12 +7,12 @@ import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
 import Header from "@/components/Header";
 
-import { usePageFila } from "./usePageFila";
-import { Pointer } from "lucide-react";
+import { usePageAtendimento } from "./usePageAtendimento";
+import { Pointer, MessageSquareLock } from "lucide-react";
 import WaitingTime from "@/components/WaitingTime";
 
 export default function Login() {
-  const { fila, StartService, currentTime, CancelService } = usePageFila();
+  const { fila, CancelService, currentTime, preservice } = usePageAtendimento();
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -20,14 +20,21 @@ export default function Login() {
       </header>
       <section className={styles.center}>
         <div className={styles.form}>
-          {fila?.map((item, index) => (
+          <MessageSquareLock size={500} />
+          {preservice?.initial_msg && <p>Em breve você será atendido...</p>}
+          {!preservice?.initial_msg && (
+            <p>Este atendimento já foi finalizado/cancelado...</p>
+          )}
+
+          <Button label="Cancelar Atendimento" onClick={CancelService}></Button>
+          {/* {fila?.map((item, index) => (
             <WaitingTime
               key={index}
               title={item.user}
               initial_msg={item.initial_msg}
               startDate={item.created_at}
               endDate={currentTime}
-              onClick1={() =>
+              onClick={() =>
                 StartService(
                   item.id,
                   item.id_user,
@@ -35,11 +42,8 @@ export default function Login() {
                   item.initial_msg
                 )
               }
-              onClick2={() => CancelService(item.id)}
-              label1="Atender"
-              label2="Cancelar"
             ></WaitingTime>
-          ))}
+          ))} */}
         </div>
       </section>
       <footer className={styles.footer}></footer>

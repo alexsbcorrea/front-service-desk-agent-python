@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 
 import { useAuth } from "../../contexts/UserContext";
 import { useFlashMessage } from "../../utils/useFlashMessage/useFlashMessage";
+import { setCookie } from "cookies-next";
 
 export function usePageLoginOperador() {
   const { setFlashMessage } = useFlashMessage();
@@ -36,6 +37,11 @@ export function usePageLoginOperador() {
         token: response.data.token,
       };
       loginUser(data);
+      setCookie("chat-bp-id", response.data.id);
+      setCookie("chat-bp-name", response.data.name);
+      setCookie("chat-bp-email", response.data.email);
+      setCookie("chat-bp-profile", response.data.profile);
+      setCookie("chat-bp-token", response.data.token);
       //setFlashMessage("success", `Bem vindo(a) ${name}`, 5000);
       router.push("/fila");
     } catch (error) {

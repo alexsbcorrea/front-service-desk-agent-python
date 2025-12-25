@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
+import { getCookie, setCookie } from "cookies-next";
 
 import { useAuth } from "../../contexts/UserContext";
 import { useFlashMessage } from "../../utils/useFlashMessage/useFlashMessage";
@@ -36,6 +37,11 @@ export function usePageLogin() {
         token: response.data.token,
       };
       loginUser(data);
+      setCookie("chat-bp-id", response.data.id);
+      setCookie("chat-bp-name", response.data.name);
+      setCookie("chat-bp-email", response.data.email);
+      setCookie("chat-bp-profile", response.data.profile);
+      setCookie("chat-bp-token", response.data.token);
       //setFlashMessage("success", `Bem vindo(a) ${name}`, 5000);
       router.push("/solutions");
     } catch (error) {

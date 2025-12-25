@@ -52,9 +52,11 @@ export default function Header(props: HeaderProps) {
       window.localStorage.removeItem("authTokenKB");
       window.localStorage.removeItem("userInfo");
     }
-    deleteCookie("authTokenKB");
-    deleteCookie("authUser");
-    deleteCookie("idUser");
+    deleteCookie("chat-bp-token");
+    deleteCookie("chat-bp-id");
+    deleteCookie("chat-bp-name");
+    deleteCookie("chat-bp-email");
+    deleteCookie("chat-bp-profile");
     logoutUser();
     router.push("/");
   }

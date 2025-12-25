@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { api } from "@/services/api";
+import { useToken } from "../../services/useToken";
 
 import { useFlashMessage } from "../../utils/useFlashMessage/useFlashMessage";
 
 export function usePageNovoOperador() {
+  const { extractToken } = useToken();
   const { setFlashMessage } = useFlashMessage();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -15,7 +17,7 @@ export function usePageNovoOperador() {
         { name, email },
         {
           headers: {
-            Authorization: `Bearer Aex`,
+            Authorization: `Bearer ${extractToken()}`,
           },
         }
       );
