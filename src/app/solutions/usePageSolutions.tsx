@@ -30,9 +30,9 @@ export function usePageSolutions() {
       },
     });
 
-    socketRef.current.on(`event`, (data) => {
-      alert("Evento");
-    });
+    // socketRef.current.on(`event`, (data) => {
+    //   alert("Evento");
+    // });
 
     return () => {
       socketRef.current?.disconnect();

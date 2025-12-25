@@ -57,6 +57,9 @@
   font-family: var(--fontProject);
   border: 1px solid var(--cinza100);
   border-radius: 0.5rem;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  line-height: 150%;
 }
 
 @media screen and (max-width: 800px) {

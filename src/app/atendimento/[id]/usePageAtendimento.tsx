@@ -57,6 +57,8 @@ export function usePageAtendimento() {
     });
 
     return () => {
+      socketRef.current?.off("start_thread");
+      socketRef.current?.off("cancel_preservice");
       socketRef.current?.disconnect();
     };
   }, []);

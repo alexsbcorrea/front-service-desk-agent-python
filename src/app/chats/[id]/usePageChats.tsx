@@ -153,7 +153,7 @@ export function usePageChats() {
 
   useEffect(() => {
     const token = getCookie("chat-bp-token");
-    const id = getCookie("chat-bp-id");
+    const id_user = getCookie("chat-bp-id");
     const name = getCookie("chat-bp-name");
     const email = getCookie("chat-bp-email");
     const profile = getCookie("chat-bp-profile");
@@ -163,7 +163,7 @@ export function usePageChats() {
       query: {
         token: token,
         room: `bp-chat-${id}`,
-        id: id,
+        id: id_user,
         name: name,
         email: email,
         profile: profile,
@@ -183,6 +183,7 @@ export function usePageChats() {
     // });
 
     return () => {
+      socketRef.current?.off("new_message");
       socketRef.current?.disconnect();
     };
   }, []);

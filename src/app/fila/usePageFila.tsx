@@ -44,6 +44,7 @@ export function usePageFila() {
     });
 
     return () => {
+      socketRef.current?.off("new_preservice");
       socketRef.current?.disconnect();
     };
   }, []);
