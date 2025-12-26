@@ -76,6 +76,19 @@
   border: 1px solid green;
 }
 
+@media screen and (max-width: 1024px) {
+  .form {
+    width: 40%;
+    min-height: 100%;
+    overflow-y: scroll;
+  }
+  .panel {
+    width: 50%;
+    min-height: 100%;
+    overflow-y: scroll;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   /* .form {
     width: 40%;

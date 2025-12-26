@@ -95,6 +95,19 @@
   align-items: centerss;
 }
 
+@media screen and (max-width: 1024px) {
+  .conversation {
+    width: 70%;
+    min-height: 100%;
+    overflow-y: scroll;
+  }
+  .panel {
+    width: 30%;
+    min-height: 100%;
+    overflow-y: scroll;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   /* .form {
     width: 40%;

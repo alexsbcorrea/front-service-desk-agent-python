@@ -6,11 +6,17 @@ import Link from "next/link";
 
 export type ConversationProps = {
   user?: string;
+  incident?: string;
   link?: string;
   onClick?: () => Promise<void>;
 };
 
-const Conversation: React.FC<ConversationProps> = ({ user, link, onClick }) => {
+const Conversation: React.FC<ConversationProps> = ({
+  user,
+  incident,
+  link,
+  onClick,
+}) => {
   return (
     <Link
       href={link ? link : "#"}
@@ -24,6 +30,7 @@ const Conversation: React.FC<ConversationProps> = ({ user, link, onClick }) => {
         </div>
       </div>
       <div className={styles.contInput}>
+        <p>{incident}</p>
         <p>{user}</p>
       </div>
     </Link>

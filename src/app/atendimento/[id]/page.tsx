@@ -6,6 +6,8 @@ import styles from "./page.module.css";
 import OneInput from "@/components/OneInput";
 import Button from "@/components/Button";
 import Header from "@/components/Header";
+import Slider from "@/components/Slider";
+import Loader01 from "@/components/Loader01";
 
 import { usePageAtendimento } from "./usePageAtendimento";
 import { Pointer, MessageSquareLock } from "lucide-react";
@@ -20,7 +22,8 @@ export default function Login() {
       </header>
       <section className={styles.center}>
         <div className={styles.form}>
-          <MessageSquareLock size={500} />
+          <Slider></Slider>
+
           {preservice?.initial_msg && <p>Em breve você será atendido...</p>}
           {!preservice?.initial_msg && (
             <p>Este atendimento já foi finalizado/cancelado...</p>

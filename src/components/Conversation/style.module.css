@@ -32,3 +32,9 @@
   border-radius: 50%;
   background-color: var(--color09);
 }
+
+.contInput {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}

@@ -11,6 +11,7 @@ import { useAuth } from "../../../contexts/UserContext";
 
 type Thread = {
   id: string;
+  incident: string;
   id_preservice: string;
   id_user: string;
   id_operator: string;

@@ -34,13 +34,14 @@ export default function Login() {
       <section className={styles.center}>
         <div className={styles.form}>
           <IconCenter icon={<User size={100} color="#55489b" />} />
+
           <OneInput
             label="E-mail"
             placeholder=""
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></OneInput>
-
+          <p>Login Operador</p>
           <Button
             label="Entrar"
             onClick={Login}

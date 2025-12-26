@@ -46,6 +46,7 @@ export default function Chats() {
             <Conversation
               key={index}
               user={item.user}
+              incident={item.incident}
               link={`/chats/${item.id}`}
             ></Conversation>
           ))}
