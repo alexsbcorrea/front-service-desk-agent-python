@@ -18,7 +18,9 @@ export default function Login() {
       <header className={styles.header}>
         <Header></Header>
       </header>
+      <h1>Fila de Atendimento</h1>
       <section className={styles.center}>
+        
         <div className={styles.form}>
           {fila?.map((item, index) => (
             <WaitingTime
